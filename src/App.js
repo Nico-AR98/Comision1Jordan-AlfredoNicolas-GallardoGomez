@@ -14,7 +14,7 @@ export default () => {
   const [years, setYears] = useState('25');
   const [monthlyOverpayment, setMonthlyOverpayment] = useState('0');
   const [overpayments, setOverpayments] = useState([defaultOverpayment]);
-
+  const [darkMode,setDarkMode] = useState(false);
   const updateOverpayment = index => ({ target }) =>
     setOverpayments(
       overpayments.map((overpayment, i) =>
@@ -33,13 +33,14 @@ export default () => {
   });
 
   return (
-    <div>
+    <div style = {darkMode ? {backgroundColor: '#333333'}: {backgroundColor:'#ffffff'}}>
       <nav className="navbar navbar-default">
         <div className="navbar-header">
           <div className="navbar-brand">Mortgage Overpayment Calculator</div>
+          <button className="navbar-brand" id="toggle" onClick={()=>{setDarkMode(!darkMode)}}>{darkMode?'Modo Oscuro':'Modo Claro'}</button>
         </div>
       </nav>
-      <div className="container-fluid">
+      <div className="container-fluid" style={darkMode ? {color:'#ffffff'}:{color:'#333333'}}>
         <div className="col-md-8 col-sm-12">
           <div className="col-sm-4">
             <div>
